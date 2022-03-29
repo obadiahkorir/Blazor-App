@@ -9,4 +9,3 @@ C:\Projects\BlazorCRUD\Shared\obj\Debug\net5.0\BlazorCRUD.Shared.csproj.CoreComp
 C:\Projects\BlazorCRUD\Shared\obj\Debug\net5.0\BlazorCRUD.Shared.dll
 C:\Projects\BlazorCRUD\Shared\obj\Debug\net5.0\ref\BlazorCRUD.Shared.dll
 C:\Projects\BlazorCRUD\Shared\obj\Debug\net5.0\BlazorCRUD.Shared.pdb
-C:\Projects\BlazorCRUD\Shared\obj\Debug\net5.0\BlazorCRUD.Shared.csprojAssemblyReference.cache

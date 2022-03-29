@@ -113,7 +113,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 26 "C:\Projects\BlazorCRUD\Client\Pages\Authentication\Login.razor"
+#line 48 "C:\Projects\BlazorCRUD\Client\Pages\Authentication\Login.razor"
       
     LoginRequest loginRequest { get; set; } = new LoginRequest();
     string error { get; set; }
