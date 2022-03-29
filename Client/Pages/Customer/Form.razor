@@ -1,0 +1,53 @@
+﻿<EditForm Model="@cust" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Customer Name :</label>
+                <div>
+                    <InputText @bind-Value="@cust.Name" />
+                    <ValidationMessage For="@(() => cust.Name)" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group ">
+                <div>
+                    <label>Customer Email Address :</label>
+                    <div>
+                        <InputText @bind-Value="@cust.EmailAddress" />
+                        <ValidationMessage For="@(() => cust.EmailAddress)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group ">
+                <div>
+                    <label>Customer Category :</label>
+                    <div>
+                        <InputText @bind-Value="@cust.Category" />
+                        <ValidationMessage For="@(() => cust.Category)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group ">
+        <div>
+            <label>Customer Address :</label>
+            <div>
+                <InputText @bind-Value="@cust.Address" />
+                <ValidationMessage For="@(() => cust.Address)" />
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">
+        @ButtonText
+    </button>
+</EditForm>
+@code {
+    [Parameter] public Customer cust { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+}

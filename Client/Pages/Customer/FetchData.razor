@@ -1,0 +1,64 @@
+﻿@page "/customer"
+@inject HttpClient client
+@inject IJSRuntime js
+<h3>Customers</h3>
+<small>Add as many customers as you wish.</small>
+<div class="form-group pull-right">
+    <a class="btn btn-success" href="customer/create"><i class="oi oi-plus"></i> Create New</a>
+</div>
+<br>
+@if (customers == null)
+{
+    <text>Loading...</text>
+}
+else if (customers.Length == 0)
+{
+    <text>No Records Found.</text>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email Address</th>
+                <th>Category</th>
+                <th>Address</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Customer cust in customers)
+            {
+                <tr>
+                    <td>@cust.Id</td>
+                    <td>@cust.Name</td>
+                    <td>@cust.EmailAddress</td>
+                    <td>@cust.Category</td>
+                    <td>@cust.Address</td>
+                    <td>
+                        <a class="btn btn-success" href="customer/edit/@cust.Id">Edit</a>
+                        <button class="btn btn-danger" @onclick="@(() => Delete(cust.Id))">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    Customer[] customers { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        customers = await client.GetFromJsonAsync<Customer[]>("api/customer");
+    }
+    async Task Delete(int customerId)
+    {
+        var cust = customers.First(x => x.Id == customerId);
+        if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {cust.Name}'s ({cust.Id}) Record?"))
+        {
+            await client.DeleteAsync($"api/customer/{customerId}");
+            await OnInitializedAsync();
+        }
+    }
+}

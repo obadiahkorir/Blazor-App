@@ -1,0 +1,14 @@
+﻿@page "/customer/create"
+@inject HttpClient http
+@inject NavigationManager uriHelper
+<h3>Create Customer</h3>
+<Form ButtonText="Create Customer" cust="@cust"
+      OnValidSubmit="@CreateCustomer" />
+@code {
+    Customer cust = new Customer();
+    async Task CreateCustomer()
+    {
+        await http.PostAsJsonAsync("api/customer", cust);
+        uriHelper.NavigateTo("customer");
+    }
+}
